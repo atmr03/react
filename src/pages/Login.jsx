@@ -1,5 +1,5 @@
 import FormLogin from "../layout/FormLogin";
-import Button from "../componenst/Button";
+import LinkHref from "../componenst/LinkHref";
 const Login = () => {
   return (
     <>
@@ -7,8 +7,12 @@ const Login = () => {
         <h1 className=" font-bold text-4xl">Login</h1>
         <p className="text-sm mt-2">welcome, Plis enter your detail</p>
         <FormLogin />
+        <LinkHref
+          type="login"
+          href={"/register"}
+          descripsi={"belum punya akun?"}
+        />
       </div>
-      <Button />
     </>
   );
 };

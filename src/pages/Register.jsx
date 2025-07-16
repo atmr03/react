@@ -1,5 +1,6 @@
 import FormRegister from "../layout/FormRegister";
 import Button from "../componenst/Button";
+import LinkHref from "../componenst/LinkHref";
 const Register = () => {
   return (
     <>
@@ -7,6 +8,11 @@ const Register = () => {
         <h1 className=" font-bold text-4xl">Register</h1>
         <p className="text-sm mt-2">welcome, Plis enter your detail</p>
         <FormRegister />
+        <LinkHref
+          type="register"
+          href={"/login"}
+          descripsi={"sudah punya akun?"}
+        />
       </div>
       <Button />
     </>
