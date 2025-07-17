@@ -2,9 +2,10 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Login from "./pages/Login.jsx";
-import Register from "./pages/register.jsx";
-import ErrorPage from "./pages/NotFounds.jsx";
+import Login from "./pages/login";
+import Register from "./pages/register";
+import ErrorPage from "./pages/NotFounds";
+import ChartProduct from "./pages/ChartProduct";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/card",
+    element: <ChartProduct />,
   },
 ]);
 createRoot(document.getElementById("root")).render(
