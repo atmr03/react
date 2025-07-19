@@ -2,6 +2,11 @@ import React from "react";
 import Input from "../componenst/Input";
 import Button from "../componenst/Button";
 const FormLogin = () => {
+  const evenrHandler = (e) => {
+    e.preventDefault();
+    console.log(e.target.email.value);
+    console.log("login");
+  };
   return (
     <>
       <Input
@@ -16,7 +21,7 @@ const FormLogin = () => {
         id={"password"}
         placeholder={"password"}
       />
-      <Button name={"Login"} />
+      <Button onClick={evenrHandler} type="submit" name={"Login"} />
     </>
   );
 };

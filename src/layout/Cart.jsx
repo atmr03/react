@@ -7,19 +7,21 @@ const Cart = (props) => {
   );
 };
 
-const Header = () => {
+const Header = (props) => {
+  const { image } = props;
   return (
     <div className="p-5">
-      <img className="rounded" src="/public/shoes.jpg" alt="cart-1" />
+      <img className="rounded" src={image} alt="cart-1" />
     </div>
   );
 };
 
-const Content = () => {
+const Content = (props) => {
+  const { name } = props;
   return (
     <div>
       <p className="px-5">
-        <h1 className="text-white">sepatu lari</h1>
+        <h1 className="text-white">{name}</h1>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere odit
         dignissimos, in corrupti aliquid nulla a dolore. Vitae maiores ullam,
         officiis a assumenda voluptatem architecto error numquam pariatur neque
@@ -29,10 +31,11 @@ const Content = () => {
   );
 };
 
-const Footer = () => {
+const Footer = (props) => {
+  const { price } = props;
   return (
     <div className="flex items-center justify-between p-5">
-      <span className="text-xl text-white">Rp. 100.000</span>
+      <span className="text-xl text-white">{price}</span>
       <button className="p-3 bg-black text-white font-bold rounded-md">
         Buyy
       </button>

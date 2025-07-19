@@ -1,5 +1,6 @@
 const Input = (props) => {
   const { type, name, id, placeholder } = props;
+
   return (
     <form>
       <label htmlFor={id}>
