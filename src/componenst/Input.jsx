@@ -1,8 +1,7 @@
 const Input = (props) => {
   const { type, name, id, placeholder } = props;
-
   return (
-    <form>
+    <>
       <label htmlFor={id}>
         <div className="font-bold text-xl mb-3 mt-3">{name}</div>
         <input
@@ -12,7 +11,7 @@ const Input = (props) => {
           id={id}
         />
       </label>
-    </form>
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 const Button = (props) => {
-  const { name, onClick, type = "button" } = props;
+  const { name, onClick = () => {}, type = "button" } = props;
   return (
     <button
       onClick={() => onClick()}

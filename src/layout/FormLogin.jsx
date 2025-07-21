@@ -2,13 +2,14 @@ import React from "react";
 import Input from "../componenst/Input";
 import Button from "../componenst/Button";
 const FormLogin = () => {
-  const evenrHandler = (e) => {
-    e.preventDefault();
-    console.log(e.target.email.value);
-    console.log("login");
+  const evenrHandler = (event) => {
+    event.preventDefault();
+    localStorage.setItem("email", event.target.email.value);
+    localStorage.setItem("password", event.target.password.value);
+    window.location.href = "/card";
   };
   return (
-    <>
+    <form onSubmit={evenrHandler}>
       <Input
         type={"text"}
         name={"Email"}
@@ -21,8 +22,8 @@ const FormLogin = () => {
         id={"password"}
         placeholder={"password"}
       />
-      <Button onClick={evenrHandler} type="submit" name={"Login"} />
-    </>
+      <Button type="submit" name={"Login"} />
+    </form>
   );
 };
 
