@@ -1,5 +1,6 @@
 import Button from "../componenst/Button";
 import Cart from "../layout/Cart";
+import Counter from "./Counter";
 
 // belom siap ni bre
 const products = [
@@ -43,6 +44,7 @@ const CartProduct = () => {
           <Cart.Footer price={product.price} />
         </Cart>
       ))}
+      <Counter />
     </>
   );
 };
