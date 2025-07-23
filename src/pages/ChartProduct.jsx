@@ -1,6 +1,5 @@
-import Button from "../componenst/Button";
 import Cart from "../layout/Cart";
-import Counter from "./Counter";
+import { useState } from "react";
 
 // belom siap ni bre
 const products = [
@@ -11,9 +10,15 @@ const products = [
     image: "/public/shoes.jpg",
   },
   {
-    id: 1,
+    id: 2,
     name: "Product 2",
     price: 100.111,
+    image: "/public/shoes.jpg",
+  },
+  {
+    id: 2,
+    name: "Product 3",
+    price: 200.111,
     image: "/public/shoes.jpg",
   },
 ];
@@ -21,6 +26,13 @@ const products = [
 const email = localStorage.getItem("email");
 
 const CartProduct = () => {
+  const [cart, setCart] = useState([
+    {
+      name: "Sepatu Lama",
+      qty: 1,
+    },
+  ]);
+
   const handleLogout = () => {
     localStorage.removeItem("email");
     localStorage.removeItem("password");
@@ -37,14 +49,20 @@ const CartProduct = () => {
           Logout
         </button>
       </div>
-      {products.map((product) => (
-        <Cart>
-          <Cart.Header image={product.image} />
-          <Cart.Content name={product.name} />
-          <Cart.Footer price={product.price} />
-        </Cart>
-      ))}
-      <Counter />
+      <div className="flex">
+        <div className="w-4/5 flex flex-wrap gap-5 p-5">
+          {products.map((product) => (
+            <Cart key={product.id}>
+              <Cart.Header image={product.image} />
+              <Cart.Content name={product.name} />
+              <Cart.Footer price={product.price} />
+            </Cart>
+          ))}
+        </div>
+        <div className="w-1/5">
+          <h1>Card</h1>
+        </div>
+      </div>
     </>
   );
 };
