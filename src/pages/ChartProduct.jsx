@@ -16,7 +16,7 @@ const products = [
     image: "/public/shoes.jpg",
   },
   {
-    id: 2,
+    id: 3,
     name: "Product 3",
     price: 200.111,
     image: "/public/shoes.jpg",
@@ -28,7 +28,7 @@ const email = localStorage.getItem("email");
 const CartProduct = () => {
   const [cart, setCart] = useState([
     {
-      name: "Sepatu Lama",
+      id: 1,
       qty: 1,
     },
   ]);
@@ -37,6 +37,18 @@ const CartProduct = () => {
     localStorage.removeItem("email");
     localStorage.removeItem("password");
     window.location.href = "/login";
+  };
+
+  const handleAddToCart = (id) => {
+    if (cart.find((item) => item.id === id)) {
+      setCart(
+        cart.map((item) =>
+          item.id === id ? { ...item, qty: item.qty + 1 } : item
+        )
+      );
+    } else {
+      setCart([...cart, { id, qty: 1 }]);
+    }
   };
   return (
     <>
@@ -55,12 +67,41 @@ const CartProduct = () => {
             <Cart key={product.id}>
               <Cart.Header image={product.image} />
               <Cart.Content name={product.name} />
-              <Cart.Footer price={product.price} />
+              <Cart.Footer
+                price={product.price}
+                id={product.id}
+                handleAddToCart={handleAddToCart}
+              />
             </Cart>
           ))}
         </div>
         <div className="w-1/5">
           <h1>Card</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Produck</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cart.map((item) => {
+                const product = products.find(
+                  (product) => product.id === item.id
+                );
+                return (
+                  <tr key={item.id}>
+                    <td>{product.name}</td>
+                    <td>{product.price}</td>
+                    <td>{item.qty}</td>
+                    <td>{item.qty * product.price}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       </div>
     </>
