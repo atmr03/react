@@ -1,5 +1,6 @@
 import Cart from "../layout/Cart";
 import { useState } from "react";
+import Counter from "./Counter";
 
 // belom siap ni bre
 const products = [
@@ -104,6 +105,7 @@ const CartProduct = () => {
           </table>
         </div>
       </div>
+      <Counter></Counter>
     </>
   );
 };
