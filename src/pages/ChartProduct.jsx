@@ -1,5 +1,5 @@
 import Cart from "../layout/Cart";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Counter from "./Counter";
 
 // belom siap ni bre
@@ -28,11 +28,27 @@ const email = localStorage.getItem("email");
 
 const CartProduct = () => {
   const [cart, setCart] = useState([
-    {
-      id: 1,
-      qty: 1,
-    },
+    // {
+    //   id: 1,
+    //   qty: 1,
+    // },
   ]);
+
+  const [totalPrice, setTotalPrice] = useState(0);
+  useEffect(() => {
+    setCart(JSON.parse(localStorage.getItem("cart")) || []);
+  }, []);
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      const sum = cart.reduce((acc, item) => {
+        const product = products.find((product) => product.id === item.id);
+        return acc + product.price * item.qty;
+      }, 0);
+      setTotalPrice(sum);
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }, [cart]);
 
   const handleLogout = () => {
     localStorage.removeItem("email");
@@ -101,11 +117,26 @@ const CartProduct = () => {
                   </tr>
                 );
               })}
+
+              <tr>
+                <td colSpan={3}>
+                  <b>Total Price</b>
+                </td>
+                <td>
+                  <b>
+                    Rp{" "}
+                    {totalPrice.toLocaleString("id-ID", {
+                      style: "currency",
+                      currency: "IDR",
+                    })}
+                  </b>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
       </div>
-      <Counter></Counter>
+      {/* <Counter></Counter> */}
     </>
   );
 };
