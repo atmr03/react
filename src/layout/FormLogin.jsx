@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Input from "../componenst/Input";
 import Button from "../componenst/Button";
+
+import { useRef } from "react";
 const FormLogin = () => {
   const evenrHandler = (event) => {
     event.preventDefault();
@@ -8,6 +10,12 @@ const FormLogin = () => {
     localStorage.setItem("password", event.target.password.value);
     window.location.href = "/card";
   };
+
+  const emailRef = useRef(null);
+
+  useEffect(() => {
+    emailRef.current.focus();
+  }, []);
   return (
     <form onSubmit={evenrHandler}>
       <Input
@@ -15,6 +23,7 @@ const FormLogin = () => {
         name={"Email"}
         id={"email"}
         placeholder={"example@gmail.com"}
+        ref={emailRef}
       />
       <Input
         type={"password"}

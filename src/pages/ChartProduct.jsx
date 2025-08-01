@@ -1,5 +1,5 @@
 import Cart from "../layout/Cart";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Counter from "./Counter";
 
 // belom siap ni bre
@@ -67,6 +67,25 @@ const CartProduct = () => {
       setCart([...cart, { id, qty: 1 }]);
     }
   };
+
+  // useRef
+  const cartRef = useRef(JSON.parse(localStorage.getItem("cart")) || []);
+
+  const handleAddToCartRef = (id) => {
+    cartRef.current = [...cartRef.current, { id, qty: 1 }];
+    localStorage.setItem("cart", JSON.stringify(cartRef.current));
+  };
+
+  const totalPriceRef = useRef(null);
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      totalPriceRef.current.style.display = "table-row";
+    } else {
+      totalPriceRef.current.style.display = "none";
+    }
+  }, [cart]);
+
   return (
     <>
       <div className="flex justify-end text-white px-10 bg-blue-600 h-20 items-center gap-5">
@@ -118,7 +137,7 @@ const CartProduct = () => {
                 );
               })}
 
-              <tr>
+              <tr ref={totalPriceRef}>
                 <td colSpan={3}>
                   <b>Total Price</b>
                 </td>
