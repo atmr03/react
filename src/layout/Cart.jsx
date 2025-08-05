@@ -12,7 +12,11 @@ const Header = (props) => {
   const { image } = props;
   return (
     <div className="p-5">
-      <img className="rounded" src={image} alt="cart-1" />
+      <img
+        className="rounded h-60 w-full object-cover"
+        src={image}
+        alt="cart-1"
+      />
     </div>
   );
 };
@@ -21,8 +25,10 @@ const Content = (props) => {
   const { name } = props;
   return (
     <div>
-      <div className="px-5">
-        <h1 className="text-white">{name}</h1>
+      <div className="px-5 ">
+        <h1 className="text-white h-full tracking-tight">
+          {name.substring(0, 10)}...
+        </h1>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere odit
         dignissimos, in corrupti aliquid nulla a dolore. Vitae maiores ullam,
         officiis a assumenda voluptatem architecto error numquam pariatur neque
@@ -37,8 +43,8 @@ const Footer = (props) => {
   return (
     <div className="flex items-center justify-between p-5">
       <span className="text-xl text-white">
-        Rp.
-        {price.toLocaleString("id-ID", { styles: "currency", currency: "IDR" })}
+        $
+        {price.toLocaleString("id-ID", { styles: "currency", currency: "USD" })}
       </span>
       <Button
         onClick={() => handleAddToCart(id)}
